@@ -1,0 +1,25 @@
+{
+  "name": "altarius",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "meta": "node MetaEti.js",
+    "think": "node ThinkEti.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "playwright": "^1.36.1"
+  },
+  "dependencies": {
+    "@cliqz/adblocker-playwright": "^1.26.6",
+    "firebase": "^10.1.0",
+    "graphql-request": "^6.1.0",
+    "mysql": "^2.18.1",
+    "node-fetch": "^3.3.2"
+  }
+}
