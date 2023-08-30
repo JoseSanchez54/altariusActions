@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Altarius data
 on:
   push:
     branches:
