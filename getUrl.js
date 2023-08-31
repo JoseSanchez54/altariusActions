@@ -31,7 +31,7 @@ export default async function getUrl(url, nombreColeccion) {
   let historyToday;
   const browser = await chromium.launch({
     headless: true,
-    slowMo: 1000,
+    slowMo: 2000,
     timeout: 10000,
   });
   const page = await browser.newPage();
