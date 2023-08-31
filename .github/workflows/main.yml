@@ -4,7 +4,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "1 11,16 * * *"
+    - cron: "1 10,16 * * *"
 jobs:
   test:
     timeout-minutes: 5
