@@ -1,14 +1,8 @@
-name: Altarius data
-on:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: "1 10,16 * * *"
+
+
 jobs:
   test:
-    timeout-minutes: 5
-    runs-on: ubuntu-latest
+    executor: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
