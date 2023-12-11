@@ -1,18 +1,19 @@
-
-
+version: 2.1
+orbs:
+  node: circleci/node@5.0.2
 jobs:
-  test:
-    executor: ubuntu-latest
+    build_and_test: test
+    executor: node/default 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
+      - checkout
+      node/install-packages:
+          pkg-manager: npm
+      - run:
+        command: npm install
       - name: Install dependencies
-        run: npm i
+      - run:
+        command: npm run think
       - name: RunThink
-        continue-on-error: true
-        run: npm run think
+      - run:
+        command: npm run meta
       - name: RunMeta
-        continue-on-error: true
-        run: npm run meta
