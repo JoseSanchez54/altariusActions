@@ -229,16 +229,24 @@ export default async function getUrl(url, nombreColeccion) {
         .then((e) => e)
         .catch((e) => e);
       console.log("Added document with ID: ", res.id, "con datos", data);
-      Sentry.captureMessage(data);
+
+      fetch(
+        "https://n8n.drumstock.dev/webhook/46fe85f3-0b59-4f3e-b4f3-53d716a8f557"
+      );
       process.exit();
     } else {
+      fetch(
+        "https://n8n.drumstock.dev/webhook/46fe85f3-0b59-4f3e-b4f3-53d716a8f557"
+      );
       console.log("Not Updated because is the same");
-      Sentry.captureMessage("Not Updated because is the same");
+      fetch(
+        "https://n8n.drumstock.dev/webhook/46fe85f3-0b59-4f3e-b4f3-53d716a8f557"
+      );
       process.exit();
     }
   } else {
     console.log("No data, Check if the market is open");
-    Sentry.captureMessage("No data, Check if the market is open");
     process.exit();
   }
+  process.exit();
 }
