@@ -229,22 +229,21 @@ export default async function getUrl(url, nombreColeccion) {
         .then((e) => e)
         .catch((e) => e);
       console.log("Added document with ID: ", res.id, "con datos", data);
-
       await fetch(
-        "https://n8n.drumstock.dev/webhook/46fe85f3-0b59-4f3e-b4f3-53d716a8f557"
+        `https://n8n.drumstock.dev/webhook/46fe85f3-0b59-4f3e-b4f3-53d716a8f557?mensaje=añadido&url=${url}`
       );
       process.exit();
     } else {
-      await fetch(
-        "https://n8n.drumstock.dev/webhook/46fe85f3-0b59-4f3e-b4f3-53d716a8f557"
-      );
       console.log("Not Updated because is the same");
       await fetch(
-        "https://n8n.drumstock.dev/webhook/46fe85f3-0b59-4f3e-b4f3-53d716a8f557"
+        `https://n8n.drumstock.dev/webhook/46fe85f3-0b59-4f3e-b4f3-53d716a8f557?mensaje=añadido&url=${url}`
       );
       process.exit();
     }
   } else {
+    await fetch(
+      `https://n8n.drumstock.dev/webhook/46fe85f3-0b59-4f3e-b4f3-53d716a8f557?mensaje=añadido&url=${url}`
+    );
     console.log("No data, Check if the market is open");
     process.exit();
   }
