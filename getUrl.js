@@ -20,7 +20,6 @@ const firebaseConfig = {
   appId: "1:768895361924:web:1eb28a28147cb5779633d1",
 };
 export default async function getUrl(url, nombreColeccion) {
-  transaction.finish();
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const coleccion = collection(db, nombreColeccion);
