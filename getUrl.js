@@ -1,6 +1,8 @@
 import { chromium } from "playwright";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import * as Sentry from "@sentry/node";
+import { ProfilingIntegration } from "@sentry/profiling-node";
 import {
   collection,
   addDoc,
@@ -18,6 +20,7 @@ const firebaseConfig = {
   appId: "1:768895361924:web:1eb28a28147cb5779633d1",
 };
 export default async function getUrl(url, nombreColeccion) {
+  transaction.finish();
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const coleccion = collection(db, nombreColeccion);
@@ -214,18 +217,30 @@ export default async function getUrl(url, nombreColeccion) {
     };
 
     const fecha = lastPost?.docs[0]?.data()?.firstInfo.lastUpdate;
+    Sentry.init({
+      dsn: "https://75b4714133365bdcafc9665366d3ce0d@o1183910.ingest.sentry.io/4506393301876736",
+      integrations: [new ProfilingIntegration()],
+      // Performance Monitoring
+      tracesSampleRate: 1.0,
+      // Set sampling rate for profiling - this is relative to tracesSampleRate
+      profilesSampleRate: 1.0,
+    });
     if (fecha !== firstInfo.lastUpdate) {
       const res = await addDoc(coleccion, data)
         .then((e) => e)
         .catch((e) => e);
       console.log("Added document with ID: ", res.id, "con datos", data);
+      Sentry.captureException(new Error(data));
       process.exit();
     } else {
       console.log("Not Updated because is the same");
+      Sentry.captureException(new Error("Not Updated because is the same"));
+
       process.exit();
     }
   } else {
     console.log("No data, Check if the market is open");
+    Sentry.captureException(new Error("No data, Check if the market is open"));
     process.exit();
   }
 }
