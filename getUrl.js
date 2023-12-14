@@ -230,16 +230,16 @@ export default async function getUrl(url, nombreColeccion) {
         .catch((e) => e);
       console.log("Added document with ID: ", res.id, "con datos", data);
 
-      fetch(
+      await fetch(
         "https://n8n.drumstock.dev/webhook/46fe85f3-0b59-4f3e-b4f3-53d716a8f557"
       );
       process.exit();
     } else {
-      fetch(
+      await fetch(
         "https://n8n.drumstock.dev/webhook/46fe85f3-0b59-4f3e-b4f3-53d716a8f557"
       );
       console.log("Not Updated because is the same");
-      fetch(
+      await fetch(
         "https://n8n.drumstock.dev/webhook/46fe85f3-0b59-4f3e-b4f3-53d716a8f557"
       );
       process.exit();
