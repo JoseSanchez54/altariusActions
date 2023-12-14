@@ -229,17 +229,16 @@ export default async function getUrl(url, nombreColeccion) {
         .then((e) => e)
         .catch((e) => e);
       console.log("Added document with ID: ", res.id, "con datos", data);
-      Sentry.captureException(new Error(data));
+      Sentry.captureMessage(data);
       process.exit();
     } else {
       console.log("Not Updated because is the same");
-      Sentry.captureException(new Error("Not Updated because is the same"));
-
+      Sentry.captureMessage("Not Updated because is the same");
       process.exit();
     }
   } else {
     console.log("No data, Check if the market is open");
-    Sentry.captureException(new Error("No data, Check if the market is open"));
+    Sentry.captureMessage("No data, Check if the market is open");
     process.exit();
   }
 }
