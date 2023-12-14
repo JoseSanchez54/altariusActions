@@ -5,4 +5,4 @@ git pull
 firefox
 npm install
 npm run all
-shutdown -h +5
+shutdown -h +3
