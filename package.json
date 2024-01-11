@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "meta": "node MetaEti.js",
     "think": "node ThinkEti.js",
-    "all": "node ThinkEti.js && node MetaEti.js"
+    "all": "node ThinkEti.js && node MetaEti.js",
+    "test-html-report": "playwright test --browser=all --reporter=html",
+    "test-json-report": "PLAYWRIGHT_JSON_OUTPUT_NAME=results.json playwright test --browser=chromium --reporter=json"
   },
   "keywords": [],
   "author": "",
